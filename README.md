@@ -1,11 +1,11 @@
 
-# Content Aquisiton System (CAS)
+# Content Acquisition System (CAS)
 
-Content Aquisition System (CAS) is a construction of various softwares which allow for the safe and private transfer of data across the internet.
+Content Acquisition System (CAS) is a construction of various softwares which allow for the safe and private transfer of data across the internet.
 
 This is a work in progress. Although this architecture is functioning within known environments, there are many details to refine to allow for ease of accessibility for a larger audience.
 
-The motiviation for starting this project is to encourage a maximum of privacy and security; ease of assembly and maintenance; and ultimately increase options in media accessibility.
+The motivation for starting this project is to encourage a maximum of privacy and security; ease of assembly and maintenance; and ultimately increase options in media accessibility.
 
 Please use the Discussions section of this repository (horizontal navigation) to ask questions, offer suggestions, praise, and criticism. As this project becomes more technically
 focused, the Issues section will be used for pull requests, bugs, etc. 
@@ -71,7 +71,7 @@ Host myseedbox
 
 ## Viewing 
 
-The viewing component will be unique to your environement and the only requirement is that it can access the Media Center for the playing of content.
+The viewing component will be unique to your environment and the only requirement is that it can access the Media Center for the playing of content.
 
 ### Roku
 
