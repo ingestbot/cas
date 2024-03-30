@@ -1,0 +1,25 @@
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    hostname: my-syncthing
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - all_proxy=socks5://socks.somewhere.io:1080
+      - ALL_PROXY_NO_FALLBACK=1
+      - TZ=America/Los_Angeles
+    volumes:
+      - ./syncthing_config:/config
+      - /usr/local/datarr/downloads:/var/syncthing/downloads
+    ports:
+      - 8384:8384
+      # - 22000:22000/tcp # this may not be necessary 
+      
+    healthcheck:
+      test: curl --fail https://ipconfig.io || exit 1
+      interval: 30s
+      retries: 3
+      start_period: 5s
+      timeout: 5s
+    restart: unless-stopped

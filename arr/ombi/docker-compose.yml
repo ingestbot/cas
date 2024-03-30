@@ -1,0 +1,20 @@
+services:
+  ombi:
+    image: lscr.io/linuxserver/ombi:latest
+    container_name: ombi
+    environment:
+      # - BASE_URL=/ombi #optional
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+    volumes:
+      - ./ombi_config:/config
+    ports:
+      - 3579:3579
+    healthcheck:
+      test: nc -z localhost ${PORT} || exit 1
+      interval: 10s
+      retries: 3
+      start_period: 5s
+      timeout: 5s
+    restart: unless-stopped

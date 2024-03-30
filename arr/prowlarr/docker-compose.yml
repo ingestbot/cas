@@ -1,0 +1,19 @@
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+    volumes:
+      - ./prowlarr_config:/config
+    ports:
+      - 9696:9696
+    healthcheck:
+      test: nc -z localhost 9696 || exit 1
+      interval: 10s
+      retries: 3
+      start_period: 5s
+      timeout: 5s
+    restart: unless-stopped

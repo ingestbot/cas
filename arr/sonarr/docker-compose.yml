@@ -1,0 +1,22 @@
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+    volumes:
+      - ./sonarr_config:/config
+      - /usr/local/datarr/downloads:/sonarr/downloads
+      - /usr/local/datarr/content:/sonarr/content
+    ports:
+      - 8989:8989
+
+    healthcheck:
+      test: nc -z localhost ${PORT} || exit 1
+      interval: 10s
+      retries: 3
+      start_period: 5s
+      timeout: 5s
+    restart: unless-stopped

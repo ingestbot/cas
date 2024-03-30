@@ -1,0 +1,39 @@
+##
+## https://emby.media/docker-server.html
+## https://registry.hub.docker.com/r/emby/embyserver
+##
+# version: "2.3"
+services:
+  emby:
+    image: emby/embyserver:latest
+    container_name: emby
+    # network_mode: host # Enable DLNA and Wake-on-Lan
+    environment:
+      - UID=996
+      - GID=995
+      - GIDLIST=100,44,109 # A comma-separated list of additional GIDs to run emby as (default: 2)
+
+      - http_proxy=${http_proxy}
+      - https_proxy=${https_proxy}
+      - no_proxy=${no_proxy}
+      - HTTP_PROXY=${http_proxy}
+      - HTTPS_PROXY=${https_proxy}
+      - NO_PROXY=${no_proxy}
+
+    volumes:
+      # - /usr/local/docker/emby/config:/config # Configuration directory
+      - ./emby_config:/config # Configuration directory
+      - /mmedia001:/mmedia001
+      - /mmedia002:/mmedia002
+    ports:
+      - 8096:8096 # HTTP port
+    devices:
+      - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
+
+    healthcheck:
+      test: nc -z localhost ${PORT} || exit 1
+      interval: 10s
+      retries: 3
+      start_period: 5s
+      timeout: 5s
+    restart: unless-stopped
