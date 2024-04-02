@@ -21,7 +21,9 @@ focused, the Issues section will be used for pull requests, bugs, etc.
 
 ## Diagram / Overview 
 
-The topics which follow are based on [this diagram](images/cas_arch.png).
+The topics which follow are based on the following diagram:
+
+![cas_arch.png](images/cas_arch.png)
 
 ## Network Considerations
 
